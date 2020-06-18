@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A9F08644-D655-4611-91E5-4A10903037E1}</ProjectGuid>
+    <ProjectGuid>{7BE9A271-CCF2-4B20-BBBD-AF613476E3ED}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_2_1_Okay_Okay</RootNamespace>
-    <AssemblyName>2_1_Okay_Okay</AssemblyName>
+    <RootNamespace>CustomString2_1_1</RootNamespace>
+    <AssemblyName>CustomString2_1_1</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="2_1_1Custom_String.cs" />
+    <Compile Include="MyString.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
