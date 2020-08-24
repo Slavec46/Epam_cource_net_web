@@ -1,0 +1,110 @@
+* {
+	box-sizing:border-box;
+}
+
+body {
+	width:100%;
+	height: 100%;
+	font-size:14px;
+	line-height: 1.42;
+}
+
+ul {
+	padding:0;
+	margin:0;
+}
+ul li {
+	list-style: none;
+}
+
+a {
+	text-decoration:none;
+}
+.wrapper {
+    overflow: hidden;
+}
+.registration__container {
+    width: 400px;
+    height: 280px;
+    background: #0690cf;
+    display: block;
+    flex-direction: column;
+    border: 2px solid #0075b2;
+}
+
+.registration__top {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.registration__top-text {
+    width: 90%;
+    height: 30px;
+    font-size:25px;
+    line-height: 1.42;
+    color:white;
+}
+.registration__bot {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+}
+.registration__bot__form {
+    width: 360px;
+    height: 100%;
+    padding-top:30px;
+
+}
+.registration__form {
+
+    width: 100%;
+    height: 100%; 
+}
+.registration__form-group {
+
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.input__submit {
+    padding-top:30px;
+    width: 25%;
+}
+.pass {
+    padding-top:25px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+.registration__label {
+    width: 100%;
+}
+.registration__input {
+    width: 100%;
+}
+.registration__form__subgroup-pass, .registration__form__subgroup-reppass {
+    width: 47%;
+    height: 100%;
+}
+.registration__label {
+    color:white;
+    font-size:15px;
+	line-height: 1.42;
+}
+.registration__input {
+    border: 1px solid #abadb3;
+    height: 20px;
+}
+.registration__input:focus  {
+    outline: none !important;
+}
+.submit {
+    height: 35px;
+    border:none;
+    background: #ffdf7f;
+}
