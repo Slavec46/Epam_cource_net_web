@@ -104,7 +104,7 @@ a {
     outline: none !important;
 }
 .submit {
-    height: 35px;
+    height: 35px; 
     border:none;
     background: #ffdf7f;
 }
