@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Keep</title>
+    <link rel="stylesheet" href="CSS Styles/styles.css" type="text/css"/>
+    <script type='text/javascript' src='JavaScript/Array.js'></script> 
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="search__container">
+                <div class="search">
+                    <form class="search__form">
+                        <input type="text" placeholder="Поиск" name="" class="search__input">
+                        <input type="submit" name="" value="" class="search__submit">
+                    </form>
+                </div>
+            </div>
+            <div class="note__container">
+                <div id="notes__list" class="note__list">
+                    <div id="base" class="note__item">
+                        <div class="note__item-text a">
+                            <span id="content__head-text" class="note-text-head"></span>
+                            <span id="content__body-text" class="note-text-body"></span>
+                            <button id="note-deleted-buttom" class="delete__note-item deleted" type="button"></button>
+                        </div>
+                    </div>    
+                </div>
+                <button id = "b__main__create" class="atuin-btn" type="button" value="Кнопка input" />+</button> 
+            </div>  
+        </div>
+       
+    </div>
+    <div id="ModalCreate" class="ModalCreate">
+        <div class="modalcontainer">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <div id="modal-content-head" contenteditable="true" data-placeholder="Заголовок" class="modal-header" ></div>
+                  <!-- <div contenteditable="true" data-text="Enter text here">     -->
+                  <div id="modal-content-body" contenteditable="true" data-placeholder="Текст" class="modal-body"></div>
+                  </div>
+                  <a href="#" id="b__create" class="btn__create">
+                    <span class="btn__create-text"> Создать</span>
+                  </a>
+                <a href="#" id="b__close" class="btn__close">
+                    <span class="btn__close-text"> Закрыть</span>
+                  </a>
+                </div>
+                
+              </div>
+            </div>
+        </div>
+
+    <script type='module' src='JavaScript/CreateNote.js'></script>  
+    <script type='module' src='JavaScript/Array.js'></script>  
+    <script type='module' src='JavaScript/Delete.js'></script>  
+</body>
+</html>
