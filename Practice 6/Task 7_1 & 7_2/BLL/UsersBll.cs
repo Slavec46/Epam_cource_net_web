@@ -20,7 +20,7 @@ namespace BLL
         {
             if (user.Id == Guid.Empty)
             {
-                return _usersDao.AddUser(user); 
+                return Guid.Empty;
             }
 
             return _usersDao.AddUser(user);
@@ -35,7 +35,7 @@ namespace BLL
         }
 
         /// <exception cref="ArgumentException"></exception>
-        
+
         public User GetUser(Guid id)
         {
             if (Guid.Empty == id)
@@ -70,6 +70,59 @@ namespace BLL
                 return -1;
             }
 
+            if (_usersDao.DeleteUser(id))
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public int ChangeUser(User user)
+        {
+            if (_usersDao.ChangeUser(user))
+            {
+                return 0;
+            }
+
+            return 1;
+        }
+
+        public int ChangeUser(User user, IBll objectBll)
+        {
+            var oldUser = objectBll.Users.GetUser(user.Id);
+
+            foreach (var item in oldUser.BonusList)
+            {
+                objectBll.DeleteDependUserAndBonuses(user.Id, item);
+            }
+
+            ChangeUser(user);
+
+            foreach (var item in user.BonusList)
+            {
+                var bonus = objectBll.Bonus.GetBonus(item);
+                bonus.OwnerList.Add(user.Id);
+                objectBll.Bonus.ChangeBonus(bonus);
+                objectBll.AddDependUserAndBonuses(user.Id, item);
+            }
+
+            return 1;
+        }
+
+        public int DeleteUser(Guid id, IBll objectBll)
+        {
+            if (Guid.Empty == id || objectBll == null)
+            {
+                return 1;
+            }
+
+            foreach (var bonusId in _usersDao.GetUser(id).BonusList)
+            {
+                objectBll.DeleteDependUserAndBonuses(id, bonusId);
+            }
             if (_usersDao.DeleteUser(id))
             {
                 return 0;

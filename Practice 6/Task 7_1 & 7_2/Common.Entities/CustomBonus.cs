@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace Common.Entities
 {
-    public class Bonus
+    class CustomBonus
     {
         public Guid Id { get; }
 
         public string Title { get; set; }
 
-        public List<Guid> OwnerList { get; }
+        public List<User> OwnerList { get; }
 
-        public Bonus(Guid id, string title)
+        public CustomBonus(Guid id, string title)
         {
             Id = id;
             Title = title;
-            OwnerList = new List<Guid>();
+            OwnerList = new List<User>();
         }
     }
 }

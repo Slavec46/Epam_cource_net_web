@@ -26,6 +26,37 @@ namespace BLL
             return _bonusDao.AddBonus(bonus);
         }
 
+        public int ChangeBonus(Bonus bonus)
+        {
+            if (_bonusDao.ChangeBonus(bonus))
+            {
+                return 0;
+            }
+            return 1;
+        }
+
+        public int ChangeBonus(Bonus bonus, IBll objectBll)
+        {
+            var oldBonus = objectBll.Bonus.GetBonus(bonus.Id);
+
+            foreach (var item in oldBonus.OwnerList)
+            {
+                objectBll.DeleteDependUserAndBonuses(item, bonus.Id);
+            }
+
+            ChangeBonus(bonus);
+
+            foreach (var item in bonus.OwnerList)
+            {
+                var user = objectBll.Users.GetUser(item);
+                user.BonusList.Add(bonus.Id);
+                objectBll.Users.ChangeUser(user);
+                objectBll.AddDependUserAndBonuses(item, bonus.Id);
+            }
+
+            return 1;
+        }
+        
         public IEnumerable<Bonus> GetAllBonuses()
         {
             foreach (var item in _bonusDao.GetAllBonus())
@@ -63,11 +94,33 @@ namespace BLL
             return _bonusDao.IsBonus(id);
         }
 
-        public int RemoveBonus(Guid id)
+        public int DeleteBonus(Guid id)
         {
             if (Guid.Empty == id)
             {
                 return -1;
+            }
+
+            if (_bonusDao.DeleteBonus(id))
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public int DeleteBonus(Guid id, IBll objectBll)
+        {
+            if (Guid.Empty == id || objectBll == null)
+            {
+                return -1;
+            }
+
+            foreach (var userId in _bonusDao.GetBonus(id).OwnerList)
+            {
+                objectBll.DeleteDependUserAndBonuses(userId, id);
             }
 
             if (_bonusDao.DeleteBonus(id))

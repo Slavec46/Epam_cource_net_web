@@ -8,7 +8,13 @@ namespace BLL.Interfaces
     {
         Guid AddUser(User user);
 
+        int ChangeUser(User user);
+
+        int ChangeUser(User user, IBll objectBll);
+
         int DeleteUser(Guid id);
+
+        int DeleteUser(Guid id, IBll objectBll);
 
         bool IsUser(Guid id);
 

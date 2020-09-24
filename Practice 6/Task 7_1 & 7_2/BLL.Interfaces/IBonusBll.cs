@@ -8,7 +8,13 @@ namespace BLL.Interfaces
     {
         Guid AddBonus(Bonus bonus);
 
-        int RemoveBonus(Guid id);
+        int ChangeBonus(Bonus bonus);
+
+        int ChangeBonus(Bonus bonus, IBll objectBll);
+
+        int DeleteBonus(Guid id);
+
+        int DeleteBonus(Guid id, IBll objectBll);
 
         bool IsBonus(Guid id);
 

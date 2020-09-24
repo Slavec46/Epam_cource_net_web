@@ -23,7 +23,7 @@ namespace DAL.Json
             Bonus = new BonusDao(_storagePath);
         }
 
-        public void AddDependUserBonuses(Guid userId, Guid bonusId)
+        public void AddDependUserAndBonuses(Guid userId, Guid bonusId)
         {
             User user = Users.GetUser(userId);
             Bonus bonus = Bonus.GetBonus(bonusId);
@@ -35,7 +35,7 @@ namespace DAL.Json
             Bonus.ChangeBonus(bonus);
         }
 
-        public IEnumerable<Guid> GetAllBonusedUserGuids(Guid bonusId)
+        public IEnumerable<Guid> GetAllBonusedUsersGuids(Guid bonusId)
         {
             Bonus bonus = Bonus.GetBonus(bonusId);
 
@@ -45,8 +45,28 @@ namespace DAL.Json
             }
         }
 
+        public IEnumerable<Guid> GetAllCustomBonusGuids(Guid userId)
+        {
+            User user = Users.GetUser(userId);
+
+            foreach (var item in user.BonusList)
+            {
+                yield return item;
+            }
+        }
 
 
+        public void DeleteDependUserAndBonuses(Guid userId, Guid bonusId)
+        {
+            User user = Users.GetUser(userId);
+            Bonus bonus = Bonus.GetBonus(bonusId);
+
+            user.BonusList.Remove(bonusId);
+            bonus.OwnerList.Remove(userId);
+
+            Users.ChangeUser(user);
+            Bonus.ChangeBonus(bonus);
+        }
 
         private void CreateDirectory(string path)
         {
