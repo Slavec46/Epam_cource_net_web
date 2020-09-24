@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BLL.Interfaces
 {
-    interface IBll
+    public interface IBll
     {
         IUsersBll Users { get; }
 
@@ -15,6 +15,6 @@ namespace BLL.Interfaces
 
         void AddDependUserAndBonuses(Guid userId, Guid bonusId);
 
-        void DeleteDependUserAndBonuses(Guid userId, Guid bonusId); 
+        void DeleteDependUserAndBonuses(Guid userId, Guid bonusId);
     }
 }

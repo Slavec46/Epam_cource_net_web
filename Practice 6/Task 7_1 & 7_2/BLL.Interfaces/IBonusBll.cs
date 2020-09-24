@@ -14,6 +14,6 @@ namespace BLL.Interfaces
 
         Bonus GetBonus(Guid id);
 
-        IEnumerable<Bonus> GetAllBonus();
+        IEnumerable<Bonus> GetAllBonuses();
     }
 }

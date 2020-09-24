@@ -10,7 +10,7 @@ namespace DAL.Interfaces
 
         bool ChangeBonus(Bonus newBonus);
 
-        bool RemoveBonus(Guid id);
+        bool DeleteBonus(Guid id);
 
         bool IsBonus(Guid id);
 

@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using Common.Entities;
 
-namespace BLL.Interfaces
+namespace DAL.Interfaces
 {
-    interface IUsersBll
-    {
-        Guid AddUser(IUsersBll user);
+   public interface IUsersDao
+   {
+        Guid AddUser(User user);
 
-        int DeleteUser(Guid id);
+        bool ChangeUser(User newUser);
+
+        bool DeleteUser(Guid id);
 
         bool IsUser(Guid id);
 

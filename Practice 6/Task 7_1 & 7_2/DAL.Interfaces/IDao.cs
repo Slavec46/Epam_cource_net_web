@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.Interfaces
 {
-    interface IDao
+    public interface IDao
     {
         IUsersDao Users { get; }
 
@@ -15,6 +15,6 @@ namespace DAL.Interfaces
 
         void AddDependUserAndBonuses(Guid userId, Guid bonusId);
 
-        void RemoveDependUserAndBonuses(Guid userId, Guid bonusId);
+        void DeleteDependUserAndBonuses(Guid userId, Guid bonusId);
     }
 }
