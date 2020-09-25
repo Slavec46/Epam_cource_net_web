@@ -1,0 +1,93 @@
+﻿@using BLL;
+@using BLL.Interfaces;
+@using Common;
+@using Common.Entities;
+@using Newtonsoft.Json;
+@{
+    Layout = "~/Pages/_StartLayout.cshtml";
+
+    IBll bll = DependencyResolver.Bll;
+
+    string userJsonListStr = JsonConvert.SerializeObject(bll.Users.GetAllUsers());
+
+    if (IsPost)
+    {
+        string formName = Request["name-form"];
+        string id = Request["text-id"];
+        string title = Request["text-title"];
+        string[] users = Request["select-users"]?.Split(',');
+
+        if (title != "")
+        {
+            switch (formName)
+            {
+                case "Add":
+                    AddAward(title, users);
+                    break;
+
+                case "Change":
+                    ChangeAward(Guid.Parse(id), title, users);
+                    break;
+
+                default:
+                    throw new HttpException("Incorrect formName!");
+            }
+        }
+    }
+
+    void AddAward(string title, string[] users)
+    {
+        var id = bll.Bonus.AddBonus(new Bonus(Guid.NewGuid(), title));
+
+        if (users != null && users.Length > 0)
+        {
+            foreach (var item in users)
+            {
+                bll.AddDependUserAndAwards(Guid.Parse(item), id);
+            }
+        }
+    }
+
+    void ChangeAward(Guid id, string title, string[] users)
+    {
+        var award = new Bonus(id, title);
+
+        foreach (var item in bll.Bonus.GetBonus(id).OwnerList)
+        {
+            bll.DeleteDependUserAndAwards(item, id);
+        }
+
+        if (users != null && users.Length > 0)
+        {
+            foreach (var item in users)
+            {
+                bonus.OwnerList.Add(Guid.Parse(item));
+            }
+        }
+
+        bll.Bonus.ChangeBonus(award, bll);
+    }
+}
+
+@section hendlerSection {
+    <script src="~/Scripts/hendlerSectionAward.js"></script>
+}
+@section modalSection {
+    <text id="json-string" hidden="hidden">@userJsonListStr</text>
+    <input type="text" id="name-form" name="name-form" value="" hidden="hidden" />
+    <input type="text" id="text-id" name="text-id" value="" hidden="hidden" />
+    <input type="text" name="text-title" value="" />
+    <select name="select-users" multiple>
+        <optgroup name="group-users" label="Выберите владельцев:"></optgroup>
+    </select>
+    <input type="button" name="btn-close" value="Закрыть" />
+    <button name="btn-submit">Добавить</button>
+}
+@section constant {
+    <script src="~/Scripts/AwardConstant.js"></script>
+}
+
+<nav id="nav-award" class="nav-section">
+    <button id="btn-add" name="btn-add">Добавить</button>
+    <button id="btn-update" name="btn-update">Обновить</button>
+</nav>

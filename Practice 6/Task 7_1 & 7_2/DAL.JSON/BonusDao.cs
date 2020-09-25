@@ -43,6 +43,17 @@ namespace DAL.Json
             return true;
         }
 
+        public IEnumerable<Bonus> GetAllBonus()
+        {
+            string path = Path.Combine(_folderPath, _folderName);
+            string templateExtention = "*" + _fileExtension;
+
+            foreach (var item in Directory.EnumerateFiles(path, templateExtention))
+            {
+                yield return GetBonus(Guid.Parse(Path.GetFileNameWithoutExtension(item)));
+            }
+        }
+
         public Bonus GetBonus(Guid id)
         {
             string jsonStr;
@@ -53,17 +64,6 @@ namespace DAL.Json
             }
 
             return JsonConvert.DeserializeObject<Bonus>(jsonStr);
-        }
-
-        public IEnumerable<Bonus> GetAllBonus()
-        {
-            string path = Path.Combine(_folderPath, _folderName);
-            string templateExtention = "*" + _fileExtension;
-
-            foreach (var item in Directory.EnumerateFiles(path, templateExtention))
-            {
-                yield return GetBonus(Guid.Parse(Path.GetFileNameWithoutExtension(item)));
-            }
         }
 
         public bool IsBonus(Guid id)
@@ -78,7 +78,7 @@ namespace DAL.Json
             return true;
         }
 
-        /// 
+      
         private TextWriter AddJsonFile(Guid id)
         {
             try

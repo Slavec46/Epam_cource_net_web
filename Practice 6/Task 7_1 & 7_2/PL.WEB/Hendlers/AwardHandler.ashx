@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" CodeBehind="AwardHandler.ashx.cs" Class="PL.WEB.Hendlers.AwardHandler" %>

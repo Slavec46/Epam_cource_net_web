@@ -1,0 +1,58 @@
+﻿@using Common;
+@using Common.Entities;
+@{
+    Layout = "~/Pages/Authentication/_AuthenticationLayout.cshtml";
+
+    string info = "";
+
+    if (IsPost)
+    {
+        string name = Request["name"];
+        string login = Request["login"];
+        string password = Request["password"];
+        string passwordRepeat = Request["password-repeat"];
+        string dateOfBirth = Request["dateOfBirth"]; 
+
+        if (password == passwordRepeat)
+        {
+            DateTime date;
+            if (DateTime.TryParse(dateOfBirth, out date))
+            {
+                if (!DependencyResolver.Authentication.IsLogin(login))
+                {
+                    DependencyResolver.Bll.Users.AddUser(new User(Guid.NewGuid(), name, date, login, password, "user"));
+                    FormsAuthentication.SetAuthCookie(login, true);
+                    Response.Redirect("~/Pages/UserLayout.cshtml");
+                }
+                else
+                {
+                    info = "Такой пользователь уже существует!";
+                }
+            }
+            else
+            {
+                info = "Неверный формат даты рождения!";
+            }
+        }
+        else
+        {
+            info = "Пароли не совпадают!";
+        }
+    }
+}
+
+<form action="" method="post">
+    <span class="info">Придумайте логин</span> <br />
+    <input type="text" name="login" value="" />
+    <span class="info">Придумайте пароль</span> <br />
+    <input type="password" name="password" value="" />
+    <span class="info">Повторите пароль</span> <br />
+    <input type="password" name="password-repeat" value="" />
+    <span class="info">Имя</span> <br />
+    <input type="text" name="name" value="" />
+    <span class="info">Дата рождения в формате (dd-mm-yyyy)</span> <br />
+    <input type="text" name="dateOfBirth" value="" />
+    <p class="response">@info</p>
+    <button>Регистрация</button>
+    <a href="~/Pages/Authentication/SignInLayout.cshtml" name="btn-enter">Войти</a>
+</form>

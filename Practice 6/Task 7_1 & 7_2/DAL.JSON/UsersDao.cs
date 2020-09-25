@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace DAL.Json
 {
-    class UsersDao : IUsersDao
+    public class UsersDao : IUsersDao
     {
         private readonly string _folderName;
         private readonly string _fileExtension;
@@ -101,7 +101,7 @@ namespace DAL.Json
             {
                 throw new IOException("Data retrieval error!", e);
             }
-            catch 
+            catch
             {
                 Thread.Sleep(20);
                 var stream = File.Open(
@@ -130,7 +130,7 @@ namespace DAL.Json
             {
                 throw new IOException("Data retrieval error!", e);
             }
-            catch 
+            catch
             {
                 Thread.Sleep(20);
                 var stream = File.Open(

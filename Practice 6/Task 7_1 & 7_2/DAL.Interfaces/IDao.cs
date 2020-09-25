@@ -11,7 +11,7 @@ namespace DAL.Interfaces
 
         IEnumerable<Guid> GetAllCustomBonusGuids(Guid userId);
 
-        IEnumerable<Guid> GetAllBonusedUsersGuids(Guid bonusId);
+        IEnumerable<Guid> GetAllBonusedUserGuids(Guid bonusId);
 
         void AddDependUserAndBonuses(Guid userId, Guid bonusId);
 

@@ -1,0 +1,4 @@
+﻿section button[name = "btn-add"],
+article footer button[name = "btn-delete"] {
+    display: none;
+}

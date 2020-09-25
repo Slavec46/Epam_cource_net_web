@@ -18,6 +18,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PL.WEB", "PL.WEB\", "{E1C8D074-2094-4F81-A74B-61047B8E9D61}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		ProjectReferences = "{3326e294-99a3-4ecd-bf7b-fd9740dd5013}|Common.dll;{26cd6bf5-981c-464e-a78b-436446eadc29}|BLL.Interfaces.dll;{986ee5b9-73b8-40a5-a55f-627ec327f843}|Common.Entities.dll;{6b242b30-8ea2-4365-a83f-134416aef6e1}|BLL.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_49966"
 		Debug.AspNetCompiler.PhysicalPath = "PL.WEB\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49966\"
@@ -36,6 +37,15 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PL.WEB", "PL.WEB\", "{E1C8D
 		SlnRelativePath = "PL.WEB\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.DataBase", "DAL.DataBase\DAL.DataBase.csproj", "{2920F55C-43E3-4539-8FAF-DB8484EEA41F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{36941F8E-5405-46CA-BF0A-454344BF60BB}"
+	ProjectSection(SolutionItems) = preProject
+		DataBaseScript.sql = DataBaseScript.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{D0146452-2F74-4D6D-B230-64FC4C24961B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +81,14 @@ Global
 		{E1C8D074-2094-4F81-A74B-61047B8E9D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1C8D074-2094-4F81-A74B-61047B8E9D61}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1C8D074-2094-4F81-A74B-61047B8E9D61}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{2920F55C-43E3-4539-8FAF-DB8484EEA41F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2920F55C-43E3-4539-8FAF-DB8484EEA41F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2920F55C-43E3-4539-8FAF-DB8484EEA41F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2920F55C-43E3-4539-8FAF-DB8484EEA41F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0146452-2F74-4D6D-B230-64FC4C24961B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0146452-2F74-4D6D-B230-64FC4C24961B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0146452-2F74-4D6D-B230-64FC4C24961B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0146452-2F74-4D6D-B230-64FC4C24961B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

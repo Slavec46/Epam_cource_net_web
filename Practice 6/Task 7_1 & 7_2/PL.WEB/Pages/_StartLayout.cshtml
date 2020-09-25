@@ -1,0 +1,68 @@
+﻿@using BLL;
+@using BLL.Interfaces;
+@using Common;
+@using Common.Entities;
+@{
+    Layout = null;
+
+    if (!User.Identity.IsAuthenticated)
+    {
+        Response.Redirect("~/Pages/Authentication/SignInLayout");
+    }
+
+    string userRole = "";
+    if (User.IsInRole("user"))
+    {
+        <link href="~/Styles/Authentication/StyleRoleUser.css" rel="stylesheet" />
+        userRole = "user";
+    }
+    else if (User.IsInRole("admin"))
+    {
+        userRole = "admin";
+    }
+
+    IBll bll = DependencyResolver.Bll;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Task 7</title>
+    <link href="~/Styles/StartLayout.css" rel="stylesheet" />
+    <link href="~/Styles/ModalWindow.css" rel="stylesheet" />
+
+    @RenderSection("hendlerSection")
+    <script src="~/Scripts/Xhr.js"></script>
+</head>
+<body>
+
+    <header></header>
+    <main>
+        <text id="userRol" hidden="hidden">@userRole</text>
+        <nav id="nav-column">
+            <div class="sighout">
+                Вы вошли как @userRole <strong id="text-login">@User.Identity.Name</strong> <br />
+                <a href="~/Pages/Authentication/SignInLayout.cshtml">Выйти</a>
+            </div>
+            <ul>
+                <li><a id="users" href="~/Pages/UserLayout.cshtml">Пользователи</a></li>
+                <li><a id="awards" href="~/Pages/AwardLayout.cshtml">Награды</a></li>
+            </ul>
+        </nav>
+        <section id="section-column">
+            @RenderBody()
+        </section>
+    </main>
+
+    <form action="" method="post" class="modal">
+        <div id="modal-window">
+            @RenderSection("modalSection")
+        </div>
+    </form>
+
+    <script src="~/Scripts/Constant.js"></script>
+    @RenderSection("constant")
+</body>
+</html>

@@ -1,0 +1,1 @@
+﻿const modalGroupUsers = modalWindow.children.namedItem("select-users").children.namedItem("group-users");

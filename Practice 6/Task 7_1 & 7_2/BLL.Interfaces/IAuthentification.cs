@@ -1,8 +1,8 @@
 ﻿namespace BLL.Interfaces
 {
-    public interface IAuthentification
+    public interface IAuthenfication
     {
-        bool CheckAuthentification(string login, string password);
+        bool CheckAuthentication(string login, string password);
 
         bool IsLogin(string login);
     }

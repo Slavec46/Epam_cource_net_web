@@ -1,0 +1,1 @@
+﻿const modalGroupAwards = modalWindow.children.namedItem("select-awards").children.namedItem("group-awards");

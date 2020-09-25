@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using DAL.DataBase;
+using DAL.Interfaces;
+using BLL;
 using BLL.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BLL
 {
-    class Authentication
+    public class Authentication : IAuthenfication
     {
         private readonly IUsersBll _users;
 
@@ -15,7 +19,7 @@ namespace BLL
             _users = users;
         }
 
-        public bool CheckAuthentification(string login, string password)
+        public bool CheckAuthentication(string login, string password)
         {
             foreach (var user in _users.GetAllUsers())
             {

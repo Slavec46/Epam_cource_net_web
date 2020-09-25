@@ -7,7 +7,7 @@ using Common.Entities;
 
 namespace DAL.Json
 {
-    class ObjectDao : IDao
+    public class ObjectDao : IDao
     {
         public IUsersDao Users { get; }
         public IBonusDAO Bonus { get; }
@@ -35,7 +35,7 @@ namespace DAL.Json
             Bonus.ChangeBonus(bonus);
         }
 
-        public IEnumerable<Guid> GetAllBonusedUsersGuids(Guid bonusId)
+        public IEnumerable<Guid> GetAllBonusedUserGuids(Guid bonusId)
         {
             Bonus bonus = Bonus.GetBonus(bonusId);
 

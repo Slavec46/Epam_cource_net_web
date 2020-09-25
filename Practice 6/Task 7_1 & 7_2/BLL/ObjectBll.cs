@@ -41,7 +41,7 @@ namespace BLL
                 throw new ArgumentException("Incorrect argument bonusId.");
             }
 
-            foreach (var item in _objectDao.GetAllBonusedUsersGuids(bonusId))
+            foreach (var item in _objectDao.GetAllBonusedUserGuids(bonusId))
             {
                 yield return item;
             }
